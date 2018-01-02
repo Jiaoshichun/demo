@@ -1,22 +1,35 @@
 package com.example.jsc.myapplication;
 
+import android.app.Activity;
 import android.app.Application;
+import android.app.Instrumentation;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
+
+import com.example.jsc.myapplication.activity.MessengerActivity;
+import com.example.jsc.myapplication.activity.ViewPagerActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by jsc on 2017/6/14.
  */
 
 public class MyApplication extends Application {
-    private final String TAG = "MyApplication";
+    private static final String TAG = "MyApplication";
 
     @Override
     public void onCreate() {
@@ -97,7 +110,7 @@ public class MyApplication extends Application {
             try {
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "my";
                 File file = new File(path);
-                if(!file.exists()&&!file.isDirectory()) file.mkdirs();
+                if (!file.exists() && !file.isDirectory()) file.mkdirs();
                 String filePath = path + File.separator + "error.txt";
                 fos = new FileOutputStream(filePath);
                 fos.write(content.getBytes());
@@ -112,6 +125,59 @@ public class MyApplication extends Application {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        hookTest();
+    }
+
+    public static void hookTest() {
+        try {
+            Class<?> aClass = Class.forName("android.app.ActivityThread");
+            Method currentActivityThread = aClass.getDeclaredMethod("currentActivityThread");
+            currentActivityThread.setAccessible(true);
+            Object invoke = currentActivityThread.invoke(null);
+            Field mH = aClass.getDeclaredField("mH");
+            mH.setAccessible(true);
+            Object handler = mH.get(invoke);
+            Field mCallback = Handler.class.getDeclaredField("mCallback");
+            mCallback.setAccessible(true);
+            mCallback.set(handler, new Handler.Callback() {
+                @Override
+                public boolean handleMessage(Message msg) {
+                    switch (msg.what) {
+                        case 100:
+                            Log.e(TAG, "hookTest");
+                            Object obj = msg.obj;
+                            break;
+                    }
+                    return false;
+                }
+            });
+            Field mInstrumentation = aClass.getDeclaredField("mInstrumentation");
+            mInstrumentation.setAccessible(true);
+            mInstrumentation.set(invoke, new MyInstrumentation((Instrumentation) mInstrumentation.get(invoke)));
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | NoSuchFieldException e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
+    public static class MyInstrumentation extends Instrumentation {
+        private Instrumentation instrumentation;
+
+        public MyInstrumentation(Instrumentation instrumentation) {
+            this.instrumentation = instrumentation;
+        }
+
+        @Override
+        public Activity newActivity(ClassLoader cl, String className, Intent intent) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+            Log.e(TAG, "newActivity+" + className);
+            if (TextUtils.equals(className, MessengerActivity.class.getName()))
+                className = MessengerActivity.class.getName();
+            return super.newActivity(cl, className, intent);
         }
     }
 }

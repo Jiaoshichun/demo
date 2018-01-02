@@ -3,6 +3,8 @@ package com.example.jsc.myapplication.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.jsc.myapplication.R;
+
 public class ViewPagerActivity extends AppCompatActivity {
 
     @Override

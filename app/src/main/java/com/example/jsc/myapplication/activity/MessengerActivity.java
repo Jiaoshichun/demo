@@ -48,6 +48,7 @@ public class MessengerActivity extends AppCompatActivity implements View.OnClick
         btnSend.setOnClickListener(this);
         btnStartServer = (Button) findViewById(R.id.btn_start_server);
         btnStartServer.setOnClickListener(this);
+        bindService(new Intent(this, MessengerService.class), conn, Service.BIND_AUTO_CREATE);
     }
 
     @Override
