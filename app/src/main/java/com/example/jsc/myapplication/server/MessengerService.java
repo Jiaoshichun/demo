@@ -10,7 +10,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
-import static com.example.jsc.myapplication.activity.MessengerActivity.WHAT_CLIENT;
+import static com.example.jsc.myapplication.ui.activity.MessengerActivity.WHAT_CLIENT;
 
 public class MessengerService extends Service {
     private final String TAG = "MessengerService";

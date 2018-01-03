@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.jsc.myapplication.activity.MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -23,19 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="转场动画" />
 
-            <Button
-                android:id="@+id/btn2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="rxjava"
-                android:textAllCaps="false" />
 
-            <Button
-                android:id="@+id/btn3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="retrofit"
-                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/btn4"

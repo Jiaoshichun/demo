@@ -10,11 +10,14 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Process;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.jsc.myapplication.activity.MessengerActivity;
-import com.example.jsc.myapplication.activity.ViewPagerActivity;
+import com.example.jsc.myapplication.ui.activity.MessengerActivity;
+import com.example.jsc.myapplication.ui.activity.ViewPagerActivity;
+import com.facebook.stetho.Stetho;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -30,11 +33,31 @@ import java.lang.reflect.Method;
 
 public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
+    private static Handler handler;
+    private static int mTid;
+    private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
         Thread.setDefaultUncaughtExceptionHandler(new UEHandler(this));
+        //开启SteTho调试  可以通过谷歌浏览器输入 chrome://inspect   进行调试
+        Stetho.initializeWithDefaults(this);
+        handler = new Handler();
+        mTid = Process.myTid();
+        context = getApplicationContext();
+    }
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public static Handler getHandler() {
+        return handler;
+    }
+
+    public static int getTid() {
+        return mTid;
     }
 
     private class UEHandler implements Thread.UncaughtExceptionHandler {
@@ -175,8 +198,10 @@ public class MyApplication extends Application {
         @Override
         public Activity newActivity(ClassLoader cl, String className, Intent intent) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
             Log.e(TAG, "newActivity+" + className);
-            if (TextUtils.equals(className, MessengerActivity.class.getName()))
-                className = MessengerActivity.class.getName();
+            if (TextUtils.equals(className, ViewPagerActivity.class.getName())) {
+                if (TextUtils.equals(intent.getStringExtra("type"), "Messenger"))
+                    className = MessengerActivity.class.getName();
+            }
             return super.newActivity(cl, className, intent);
         }
     }

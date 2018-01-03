@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context="com.example.jsc.myapplication.activity.ImageScaleActivity">
+    tools:context=".ui.activity.ImageScaleActivity">
 
-    <com.example.jsc.myapplication.view.ScaleImageView
+    <com.example.jsc.myapplication.ui.view.ScaleImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
