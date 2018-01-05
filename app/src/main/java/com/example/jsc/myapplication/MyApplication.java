@@ -1,5 +1,6 @@
 package com.example.jsc.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Instrumentation;
@@ -159,7 +160,7 @@ public class MyApplication extends Application {
 
     public static void hookTest() {
         try {
-            Class<?> aClass = Class.forName("android.app.ActivityThread");
+            @SuppressLint("PrivateApi") Class<?> aClass = Class.forName("android.app.ActivityThread");
             Method currentActivityThread = aClass.getDeclaredMethod("currentActivityThread");
             currentActivityThread.setAccessible(true);
             Object invoke = currentActivityThread.invoke(null);
@@ -168,17 +169,14 @@ public class MyApplication extends Application {
             Object handler = mH.get(invoke);
             Field mCallback = Handler.class.getDeclaredField("mCallback");
             mCallback.setAccessible(true);
-            mCallback.set(handler, new Handler.Callback() {
-                @Override
-                public boolean handleMessage(Message msg) {
-                    switch (msg.what) {
-                        case 100:
-                            Log.e(TAG, "hookTest");
-                            Object obj = msg.obj;
-                            break;
-                    }
-                    return false;
+            mCallback.set(handler, (Handler.Callback) msg -> {
+                switch (msg.what) {
+                    case 100:
+                        Log.e(TAG, "hookTest");
+                        Object obj = msg.obj;
+                        break;
                 }
+                return false;
             });
             Field mInstrumentation = aClass.getDeclaredField("mInstrumentation");
             mInstrumentation.setAccessible(true);
