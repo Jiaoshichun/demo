@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn1).setOnClickListener(this);
+        findViewById(R.id.btn2).setOnClickListener(this);
 
         findViewById(R.id.btn4).setOnClickListener(this);
         findViewById(R.id.btn5).setOnClickListener(this);
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn1:
                 startActivity(new Intent(this, TransitionActivity.class));
+                break;
+            case R.id.btn2:
+                startActivity(new Intent(this, AnimationActivity.class));
                 break;
             case R.id.btn4:
 //                startActivity(new Intent(this, KotlinActivity.class));

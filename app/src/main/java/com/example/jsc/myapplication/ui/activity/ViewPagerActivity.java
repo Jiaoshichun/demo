@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.view.transformer.AlphaAndScalePageTransformer;
 import com.example.jsc.myapplication.view.transformer.RotateDownTransformer;
+import com.example.jsc.myapplication.view.transformer.TabletTransformer;
 
 public class ViewPagerActivity extends AppCompatActivity {
     private final String TAG = "ViewPagerActivity";
@@ -28,10 +29,10 @@ public class ViewPagerActivity extends AppCompatActivity {
         vp = findViewById(R.id.vp);
         myAdapter = new MyAdapter(this);
         vp.setAdapter(myAdapter);
-        vp.setPageMargin(25);
+//        vp.setPageMargin(25);
         vp.setOffscreenPageLimit(3);
 //        vp.setPageMarginDrawable(R.mipmap.head);
-        vp.setPageTransformer(true,new RotateDownTransformer());
+        vp.setPageTransformer(true,new TabletTransformer());
     }
 
     static class MyAdapter extends PagerAdapter {

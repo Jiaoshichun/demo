@@ -16,7 +16,6 @@ public class AlphaAndScalePageTransformer implements ViewPager.PageTransformer {
         float alpha;
         if (position < -1) {
             scale = 0.8f;
-
             alpha = 0.5f;
         } else if (position <= 1) {
             if (position < 0) {

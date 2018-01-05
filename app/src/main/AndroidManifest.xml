@@ -20,27 +20,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.jsc.myapplication.ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.jsc.myapplication.ui.activity.TransitionActivity" />
-        <activity android:name="com.example.jsc.myapplication.ui.activity.DetailActivity" />
+        <activity android:name=".ui.activity.TransitionActivity" />
+        <activity android:name=".ui.activity.DetailActivity" />
         <!-- <activity android:name=".activity.KotlinActivity" /> -->
-        <activity android:name="com.example.jsc.myapplication.ui.activity.ImageScaleActivity" />
-        <activity android:name="com.example.jsc.myapplication.ui.activity.RecyclerActivity" />
-        <activity android:name="com.example.jsc.myapplication.ui.activity.AddressBookActivity" />
-        <activity android:name="com.example.jsc.myapplication.ui.activity.CoordinatorActivity" />
+        <activity android:name=".ui.activity.ImageScaleActivity" />
+        <activity android:name=".ui.activity.RecyclerActivity" />
+        <activity android:name=".ui.activity.AddressBookActivity" />
+        <activity android:name=".ui.activity.CoordinatorActivity" />
         <activity
-            android:name="com.example.jsc.myapplication.ui.activity.EditTextActivity"
+            android:name=".ui.activity.EditTextActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.example.jsc.myapplication.ui.activity.CircleViewActivity" />
-        <activity android:name="com.example.jsc.myapplication.ui.activity.HeBingActivity" />
+        <activity android:name=".ui.activity.CircleViewActivity" />
+        <activity android:name=".ui.activity.HeBingActivity" />
         <activity
-            android:name="com.example.jsc.myapplication.ui.activity.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:label="@string/title_activity_login">
 
             <!-- <intent-filter> -->
@@ -57,8 +57,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name="com.example.jsc.myapplication.ui.activity.ProviderActivity" />
-        <!--<activity android:name=".activity.MessengerActivity" />-->
+        <activity android:name=".ui.activity.ProviderActivity" />
+        <!-- <activity android:name=".activity.MessengerActivity" /> -->
 
         <service
             android:name=".server.MessengerService"
@@ -66,7 +66,8 @@
             android:exported="true"
             android:process=".messenger" />
 
-        <activity android:name="com.example.jsc.myapplication.ui.activity.ViewPagerActivity"></activity>
+        <activity android:name=".ui.activity.ViewPagerActivity" />
+        <activity android:name=".ui.activity.AnimationActivity"></activity>
     </application>
 
 </manifest>
