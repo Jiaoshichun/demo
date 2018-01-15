@@ -77,10 +77,10 @@ public class AnimationActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.translationX:
-                img.setTranslationX(30);
+                img.setTranslationX(img.getTranslationX() + 30);
                 break;
             case R.id.translationY:
-                img.setTranslationY(30);
+                img.setTranslationY(img.getTranslationY() + 30);
                 break;
             case R.id.scrollX:
                 img.setScrollX(30);
@@ -89,13 +89,13 @@ public class AnimationActivity extends AppCompatActivity {
                 img.setScrollY(30);
                 break;
             case R.id.rotation:
-                img.setRotation(30f);
+                img.setRotation(img.getRotation() + 30f);
                 break;
             case R.id.rotationX:
-                img.setRotationX(30f);
+                img.setRotationX(img.getRotationX() + 30f);
                 break;
             case R.id.rotationY:
-                img.setRotationY(30f);
+                img.setRotationY(img.getRotationY() + 30f);
                 break;
             case R.id.scaleX:
                 img.setScaleX(0.5f);
@@ -113,11 +113,11 @@ public class AnimationActivity extends AppCompatActivity {
                 break;
             case R.id.pivotY_add:
                 img.setPivotY(img.getPivotY() + img.getHeight() / 2);
-                pivotY.setText(String.format("当前的pivotX:%s", img.getPivotY()));
+                pivotY.setText(String.format("当前的pivotY:%s", img.getPivotY()));
                 break;
             case R.id.pivotY_minus:
                 img.setPivotY(img.getPivotY() - img.getHeight() / 2);
-                pivotY.setText(String.format("当前的pivotX:%s", img.getPivotY()));
+                pivotY.setText(String.format("当前的pivotY:%s", img.getPivotY()));
                 break;
             case R.id.reset:
 

@@ -19,6 +19,7 @@ import android.util.Log;
 import com.example.jsc.myapplication.ui.activity.MessengerActivity;
 import com.example.jsc.myapplication.ui.activity.ViewPagerActivity;
 import com.facebook.stetho.Stetho;
+import com.tencent.mta.track.StatisticsDataAPI;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -47,6 +48,7 @@ public class MyApplication extends Application {
         handler = new Handler();
         mTid = Process.myTid();
         context = getApplicationContext();
+        StatisticsDataAPI.instance(this);
     }
 
     public static Context getContext() {

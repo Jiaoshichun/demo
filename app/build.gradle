@@ -22,6 +22,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+//根据需要 自行选择添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+// 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                MTA_APPKEY:"A5DEPTB5T82Y",
+                MTA_CHANNEL:"渠道名称"
+        ]
 
     }
     buildTypes {
@@ -96,6 +106,11 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     compile 'com.contrarywind:Android-PickerView:3.2.1'
+    //mta 3.2 稳定版
+    compile 'com.qq.mta:mta:3.3.1-release'
 
+//mid  jar包 必须添加
+    compile 'com.tencent.mid:mid:3.73-release'
+    compile 'com.qq.visual:visual:3.3.1-release'
 
 }
