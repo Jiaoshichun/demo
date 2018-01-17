@@ -30,7 +30,7 @@ public class TrackEventUtils {
           * 启动界面 腾讯统计*Android   APP ID: 3103284158   App Key: A347YFSBP9NK************************
          *  http://docs.developer.qq.com/mta/fast_access/android.html  文档地址
          */
-        StatConfig.setDebugEnable(!BuildConfig.ISDEBUG);
+//        StatConfig.setDebugEnable(!BuildConfig.ISDEBUG);
         try {
             StatService.startStatService(context, null, com.tencent.stat.common.StatConstants.VERSION);
             Log.e("MTA", "MTA初始化成功");

@@ -19,4 +19,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="我叫你一声，你敢答应吗" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="远程服务设置内容" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="远程服务获取内容" />
+
 </LinearLayout>

@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.jsc.myapplication.R;
+import com.example.jsc.myapplication.aidl.Book;
+import com.example.jsc.myapplication.aidl.IMyAidlInterface;
+import com.example.jsc.myapplication.common.ToastUtils;
 import com.example.jsc.myapplication.server.MessengerService;
 
 
@@ -27,6 +30,8 @@ public class MessengerActivity extends AppCompatActivity implements View.OnClick
     private ServiceConnection conn;
     private Messenger mServerMessenger;
     private final String TAG = "MessengerActivity";
+    private IMyAidlInterface iMyAidlInterface;
+    private ServiceConnection aidlConn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +51,28 @@ public class MessengerActivity extends AppCompatActivity implements View.OnClick
         };
         btnSend = (Button) findViewById(R.id.btn_send);
         btnSend.setOnClickListener(this);
+        findViewById(R.id.btn1).setOnClickListener(this);
+        findViewById(R.id.btn2).setOnClickListener(this);
         btnStartServer = (Button) findViewById(R.id.btn_start_server);
         btnStartServer.setOnClickListener(this);
         bindService(new Intent(this, MessengerService.class), conn, Service.BIND_AUTO_CREATE);
+
+
+        Intent intent = new Intent()
+                .setAction("com.application.jsc.aidl")
+                .setPackage(getPackageName());
+        aidlConn = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        };
+        bindService(intent, aidlConn, Service.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -66,6 +90,25 @@ public class MessengerActivity extends AppCompatActivity implements View.OnClick
                     obtain.setData(data);
                     try {
                         mServerMessenger.send(obtain);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case R.id.btn1:
+                if (iMyAidlInterface != null) {
+                    try {
+                        Book book = new Book("好名字", "教育", 10.99d);
+                        iMyAidlInterface.setBook(book);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case R.id.btn2:
+                if (iMyAidlInterface != null) {
+                    try {
+                        ToastUtils.showLong(iMyAidlInterface.getBook().toString());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -90,6 +133,7 @@ public class MessengerActivity extends AppCompatActivity implements View.OnClick
     protected void onDestroy() {
         super.onDestroy();
         unbindService(conn);
+        unbindService(aidlConn);
     }
 
 }

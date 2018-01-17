@@ -27,10 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <data android:scheme="mtaautotrack.4646498a6239fcd3374bbdcbbe4f48c0"/>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="mtaautotrack.4646498a6239fcd3374bbdcbbe4f48c0" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.TransitionActivity" />
@@ -47,15 +49,7 @@
         <activity android:name=".ui.activity.HeBingActivity" />
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:label="@string/title_activity_login">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:label="@string/title_activity_login"></activity>
 
         <provider
             android:name=".provider.MyProvider"
@@ -70,10 +64,21 @@
             android:name=".server.MessengerService"
             android:enabled="true"
             android:exported="true"
-            android:process=".messenger" />
+            android:process=":messenger" />
 
         <activity android:name=".ui.activity.ViewPagerActivity" />
-        <activity android:name=".ui.activity.AnimationActivity"></activity>
+        <activity android:name=".ui.activity.AnimationActivity" />
+
+        <service
+            android:name=".server.AidlService"
+            android:enabled="true"
+            android:process=":aidl"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.application.jsc.aidl" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

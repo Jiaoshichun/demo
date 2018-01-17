@@ -10,9 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.os.Process;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -49,6 +47,7 @@ public class MyApplication extends Application {
         mTid = Process.myTid();
         context = getApplicationContext();
         StatisticsDataAPI.instance(this);
+
     }
 
     public static Context getContext() {
