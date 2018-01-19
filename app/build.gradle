@@ -29,8 +29,8 @@ android {
         }
 
         manifestPlaceholders = [
-                MTA_APPKEY:"A5DEPTB5T82Y",
-                MTA_CHANNEL:"渠道名称"
+                MTA_APPKEY : "A5DEPTB5T82Y",
+                MTA_CHANNEL: "渠道名称"
         ]
 
     }
@@ -110,5 +110,5 @@ dependencies {
     //mid  jar包 必须添加
     compile 'com.tencent.mid:mid:3.73-release'
     compile 'com.qq.visual:visual:3.3.1-release'
-
+    compile 'com.koushikdutta.async:androidasync:2.+'
 }

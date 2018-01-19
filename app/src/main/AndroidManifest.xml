@@ -3,6 +3,7 @@
     package="com.example.jsc.myapplication">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -49,7 +50,7 @@
         <activity android:name=".ui.activity.HeBingActivity" />
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
 
         <provider
             android:name=".provider.MyProvider"
@@ -72,13 +73,16 @@
         <service
             android:name=".server.AidlService"
             android:enabled="true"
-            android:process=":aidl"
-            android:exported="true">
+            android:exported="true"
+            android:process=":aidl">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="com.application.jsc.aidl" />
             </intent-filter>
         </service>
+
+        <activity android:name=".ui.activity.WebServerActivity"></activity>
     </application>
 
 </manifest>

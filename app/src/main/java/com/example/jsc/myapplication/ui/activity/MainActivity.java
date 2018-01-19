@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn12).setOnClickListener(this);
         findViewById(R.id.btn13).setOnClickListener(this);
         findViewById(R.id.btn14).setOnClickListener(this);
+        findViewById(R.id.btn15).setOnClickListener(this);
         ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
 
     }
@@ -78,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn14:
                 startActivity(new Intent(this, ViewPagerActivity.class));
+                break;
+            case R.id.btn15:
+                startActivity(new Intent(this, WebServerActivity.class));
                 break;
         }
     }
