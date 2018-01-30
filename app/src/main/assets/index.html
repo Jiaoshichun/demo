@@ -7,6 +7,28 @@
     <link rel="shortcut icon" href="images/ic_launcher.png">
 </head>
 <body>
-这是html
+<ul id="filelist" style="float:left;"></ul>
+<video id="videoplayer" style="width:300px;marginLeft:100px;" controls="controls">
+</video>
+<script>
+   $(function() {
+            var now = new Date();
+            var url = 'file' + '?' + now.getTime();
+            // 请求JSON数据
+            $.getJSON(url, function(data) {
+                // 编辑JSON数组
+                for (var i = 0; i < data.length; i++) {
+                    // 为每个对象生成一个li标签，添加到页面的ul中
+                    var $li = $('<li>' + data[i].name + '</li>');
+                    $li.attr("path", data[i].path);
+                    $("#filelist").append($li);
+                     $li.click(function() {
+                        $("#videoplayer").attr("src", "/file/" + $(this).attr("path"));
+                        $("#videoplayer").play();
+                    });
+                }
+            });
+        });
+</script>
 </body>
 </html>
