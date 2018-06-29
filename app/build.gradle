@@ -11,14 +11,14 @@ apply plugin: 'com.android.application'
 //apply plugin: 'kotlin-android'
 //apply plugin: 'kotlin-android-extensions'
 //添加插件
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.1'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.example.jsc.myapplication"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -110,5 +110,5 @@ dependencies {
     //mid  jar包 必须添加
     compile 'com.tencent.mid:mid:3.73-release'
     compile 'com.qq.visual:visual:3.3.1-release'
-    compile 'com.koushikdutta.async:androidasync:2.+'
+    compile 'com.koushikdutta.async:androidasync:2.1.7'
 }

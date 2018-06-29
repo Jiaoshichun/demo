@@ -42,7 +42,7 @@
         <!-- <activity android:name=".activity.KotlinActivity" /> -->
         <activity android:name=".ui.activity.ImageScaleActivity" />
         <activity android:name=".ui.activity.RecyclerActivity" />
-        <activity android:name=".ui.activity.AddressBookActivity" />
+        <activity android:name=".ui.activity.XidingActivity" />
         <activity android:name=".ui.activity.CoordinatorActivity" />
         <activity
             android:name=".ui.activity.EditTextActivity"

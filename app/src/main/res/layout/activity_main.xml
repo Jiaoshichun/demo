@@ -55,7 +55,7 @@
                 android:id="@+id/btn7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="仿小米通讯录"
+                android:text="吸顶"
                 android:textAllCaps="false" />
 
             <Button
