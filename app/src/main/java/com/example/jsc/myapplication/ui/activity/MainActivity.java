@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, AnimationActivity.class));
                 break;
             case R.id.btn4:
-//                startActivity(new Intent(this, KotlinActivity.class));
+                startActivity(new Intent(this, StatusBarDarkActivity.class));
                 break;
             case R.id.btn5:
                 startActivity(new Intent(this, ImageScaleActivity.class));

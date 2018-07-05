@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <!--<uses-permission android:name="com.jsc.write" />-->
+    <!-- <uses-permission android:name="com.jsc.write" /> -->
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -61,12 +61,15 @@
             android:readPermission="com.jsc.read"
             android:writePermission="com.jsc.write" />
 
-        <activity android:name=".ui.activity.ProviderActivity"
+        <activity
+            android:name=".ui.activity.ProviderActivity"
             android:exported="true">
-            <intent-filter >
-                <action android:name="com.application.jsc.provider"/>
+            <intent-filter>
+                <action android:name="com.application.jsc.provider" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="content"/>
+
+                <data android:scheme="content" />
             </intent-filter>
         </activity>
         <!-- <activity android:name=".activity.MessengerActivity" /> -->
@@ -93,7 +96,7 @@
         </service>
 
         <activity android:name=".ui.activity.WebServerActivity" />
-
+        <activity android:name=".ui.activity.StatusBarDarkActivity"></activity>
     </application>
 
 </manifest>

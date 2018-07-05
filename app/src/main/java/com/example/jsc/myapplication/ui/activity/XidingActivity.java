@@ -38,7 +38,7 @@ public class XidingActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         View view = UIUtils.getView(R.layout.view_xiding);
-        xidingUtils = new XidingUtils(recyclerView, fLayoutRoot, view, UIUtils.dip2px(40));
+        xidingUtils = new XidingUtils(recyclerView, view, UIUtils.dip2px(40));
     }
     public void onBindData(ViewGroup viewGroup,int position){
         xidingUtils.onBindXidingItemView(viewGroup,position);
