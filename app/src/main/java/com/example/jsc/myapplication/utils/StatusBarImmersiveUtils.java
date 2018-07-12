@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +14,20 @@ import android.widget.FrameLayout;
 
 /**
  * 沉浸式修改状态栏工具类(非沉浸式请用StatusBarColorUtils)
- *
+ * <p>
  * 开启沉浸式
  * 修改沉浸式状态下  状态栏背景颜色以及状态栏文字颜色
-
  */
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class StatusBarImmersiveUtils {
     private static final String TAG_FAKE_STATUS_BAR_VIEW = "statusBarView";
-
+    private static final String TAG_PADDING_ADDED = "paddingAdded";
     /**
      * 开启状态栏沉浸式(默认状态栏文字深颜色)
      */
     public static void open(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            ViewGroup contentView = activity.findViewById(Window.ID_ANDROID_CONTENT);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
                 Window window = activity.getWindow();
@@ -42,7 +43,6 @@ public class StatusBarImmersiveUtils {
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             }
 
-            ViewGroup contentView = activity.findViewById(Window.ID_ANDROID_CONTENT);
             View mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
             if (mStatusBarView == null) {
                 mStatusBarView = new View(activity);
@@ -58,10 +58,19 @@ public class StatusBarImmersiveUtils {
             StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), false);
         }
     }
-
+    //需要沉浸式的view
+    public static void immersiveView(View view){
+        Object tag = view.getTag();
+        if(!(tag instanceof String &&TextUtils.equals(TAG_PADDING_ADDED, (CharSequence) tag))){
+            view.setPadding(view.getPaddingLeft(),view.getPaddingTop()+StatusBarColorUtils.getStatusBarHeight(view.getContext())
+            ,view.getPaddingRight(),view.getPaddingBottom());
+            view.setTag(TAG_PADDING_ADDED);
+        }
+    }
     /**
      * 状态栏沉浸模式下
      * 设置状态栏文字深颜色
+     *
      * @param defaultDarkIconColor 如果状态栏图标无法设置为深色图标 设置默认的状态栏颜色
      */
     public static void setDarkIcon(Activity activity, int defaultDarkIconColor) {
@@ -71,7 +80,8 @@ public class StatusBarImmersiveUtils {
     /**
      * 状态栏沉浸模式下(状态栏文字深颜色)
      * 设置沉浸式状态栏颜色
-     * @param colorStatusbar 状态栏颜色
+     *
+     * @param colorStatusbar       状态栏颜色
      * @param defaultDarkIconColor 如果状态栏图标无法设置为深色图标 设置默认的状态栏颜色
      */
     public static void setDarkIconStatusBarColor(Activity activity, int colorStatusbar, int defaultDarkIconColor) {
@@ -80,12 +90,14 @@ public class StatusBarImmersiveUtils {
         if (mStatusBarView == null) {
             open(activity);
         }
-        mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
         if (mStatusBarView != null) {
-            if (!StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), true)) {
-                mStatusBarView.setBackgroundColor(defaultDarkIconColor);
-            } else {
-                mStatusBarView.setBackgroundColor(colorStatusbar);
+            mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
+            if (mStatusBarView != null) {
+                if (!StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), true)) {
+                    mStatusBarView.setBackgroundColor(defaultDarkIconColor);
+                } else {
+                    mStatusBarView.setBackgroundColor(colorStatusbar);
+                }
             }
         }
     }
@@ -111,10 +123,12 @@ public class StatusBarImmersiveUtils {
         if (mStatusBarView == null) {
             open(activity);
         }
-        mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
         if (mStatusBarView != null) {
-            mStatusBarView.setBackgroundColor(colorStatusbar);
-            StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), false);
+            mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
+            if (mStatusBarView != null) {
+                mStatusBarView.setBackgroundColor(colorStatusbar);
+                StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), false);
+            }
         }
     }
 }
