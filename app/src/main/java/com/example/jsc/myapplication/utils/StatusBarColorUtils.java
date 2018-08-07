@@ -1,5 +1,6 @@
 package com.example.jsc.myapplication.utils;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
@@ -13,22 +14,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-
 import com.example.jsc.myapplication.R;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * 非沉浸式修改状态栏工具类(沉浸式请用StatusBarImmersiveUtils)
- *
- * 修改状态栏背景颜色
- * 修改状态栏文字颜色(修改为深颜色时  做好无法修改为深颜色时的状态栏颜色的适配)
+ * 修改状态栏颜色工具类  修改状态栏文字工具类
  * 参考 :https://github.com/imflyn/Eyes
  * https://dev.mi.com/console/doc/detail?pId=1159
  * http://open-wiki.flyme.cn/index.php?title=%E7%8A%B6%E6%80%81%E6%A0%8F%E5%8F%98%E8%89%B2
  */
-@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class StatusBarColorUtils {
 
     private static final String TAG_FAKE_STATUS_BAR_VIEW = "statusBarView";
@@ -47,6 +44,7 @@ public class StatusBarColorUtils {
             setStatusBarColorKitkat(activity, statusColor);
         }
     }
+
     /**
      * 修改状态栏背景颜色
      *
@@ -56,12 +54,11 @@ public class StatusBarColorUtils {
      */
     public static void setStatusBarColor(Activity activity, int statusColor, boolean iconDark) {
         if (iconDark) {//状态栏文字是否是深颜色
-            if (setStatusBarDarkIcon(activity.getWindow(), true)) {
+            if (setStatusBarDarkIcon(activity, true)) {
                 setStatusBarColor(activity, statusColor);
-                setStatusBarDarkIcon(activity.getWindow(), true);
+                setStatusBarDarkIcon(activity, true);
             }
         } else {//状态栏文字设置为浅颜色
-            setStatusBarDarkIcon(activity.getWindow(), false);
             //则文字设置为深颜色 如果设置失败不进行状态栏颜色修改
             setStatusBarColor(activity, statusColor);
         }
@@ -177,12 +174,27 @@ public class StatusBarColorUtils {
     /**
      * 修改魅族手机状态栏字体颜色
      *
-     * @param window
+     * @param activity
      * @param dark
      * @returna
      */
-    private static boolean changeMeizuDrak(Window window, boolean dark) {
-        return changeMeizuFlag(window.getAttributes(), "MEIZU_FLAG_DARK_STATUS_BAR_ICON", dark);
+    private static boolean changeMeizuDrak(Activity activity, boolean dark) {
+        Method setStatusBarDarkIcon = null;
+        try {
+            setStatusBarDarkIcon = Activity.class.getMethod("setStatusBarDarkIcon", boolean.class);
+            setStatusBarDarkIcon.invoke(activity, dark);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return false;
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return changeMeizuFlag(activity.getWindow().getAttributes(), "MEIZU_FLAG_DARK_STATUS_BAR_ICON", dark);
     }
 
     private static boolean changeMeizuFlag(WindowManager.LayoutParams winParams, String flagName, boolean on) {
@@ -201,8 +213,8 @@ public class StatusBarColorUtils {
             }
             if (oldFlags != meizuFlags) {
                 f2.setInt(winParams, meizuFlags);
-                return true;
             }
+            return true;
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -238,8 +250,8 @@ public class StatusBarColorUtils {
             }
             if (newVis != oldVis) {
                 view.setSystemUiVisibility(newVis);
-                result = true;
             }
+            result = true;
         }
         return result;
     }
@@ -247,25 +259,25 @@ public class StatusBarColorUtils {
     /**
      * 设置状态栏字体图标颜色
      *
-     * @param window 当前窗口
-     * @param dark   是否深色 true为深色 false 为白色
+     * @param activity 当前窗口
+     * @param dark     是否深色 true为深色 false 为白色
      */
-    public static boolean setStatusBarDarkIcon(Window window, boolean dark) {
+    public static boolean setStatusBarDarkIcon(Activity activity, boolean dark) {
         boolean result = false;
         try {
             if (MobileRomUtils.isMIUI() && MobileRomUtils.getMiUiVersion() < 9) {
                 //如果是小米手机并且miui版本小于9  使用小米系统更改状态字体颜色方法
                 //详情  https://dev.mi.com/console/doc/detail?pId=1159
-                result = changeXiaomiDrak(window, dark);
+                result = changeXiaomiDrak(activity.getWindow(), dark);
             }
             if (!result && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                result = setStatusBarDarkIcon6(window, dark);
+                result = setStatusBarDarkIcon6(activity.getWindow(), dark);
             }
             if (!result) {
-                result = changeMeizuDrak(window, dark);
+                result = changeMeizuDrak(activity, dark);
             }
             if (!result) {
-                result = changeXiaomiDrak(window, dark);
+                result = changeXiaomiDrak(activity.getWindow(), dark);
             }
         } catch (Exception e) {
             e.printStackTrace();

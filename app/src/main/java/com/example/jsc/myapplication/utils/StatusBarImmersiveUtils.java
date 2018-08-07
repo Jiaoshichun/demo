@@ -20,14 +20,15 @@ import android.widget.FrameLayout;
  */
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class StatusBarImmersiveUtils {
-    private static final String TAG_FAKE_STATUS_BAR_VIEW = "statusBarView";
+    public static final String TAG_FAKE_STATUS_BAR_VIEW = "statusBarView";
     private static final String TAG_PADDING_ADDED = "paddingAdded";
+
     /**
      * 开启状态栏沉浸式(默认状态栏文字深颜色)
      */
     public static void open(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            ViewGroup contentView = activity.findViewById(Window.ID_ANDROID_CONTENT);
+            ViewGroup contentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
                 Window window = activity.getWindow();
@@ -55,18 +56,20 @@ public class StatusBarImmersiveUtils {
                 mStatusBarView.setBackgroundColor(Color.TRANSPARENT);
             }
             //设置状态栏图标为浅颜色
-            StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), false);
+            StatusBarColorUtils.setStatusBarDarkIcon(activity, false);
         }
     }
+
     //需要沉浸式的view
-    public static void immersiveView(View view){
+    public static void immersiveView(View view) {
         Object tag = view.getTag();
-        if(!(tag instanceof String &&TextUtils.equals(TAG_PADDING_ADDED, (CharSequence) tag))){
-            view.setPadding(view.getPaddingLeft(),view.getPaddingTop()+StatusBarColorUtils.getStatusBarHeight(view.getContext())
-            ,view.getPaddingRight(),view.getPaddingBottom());
+        if (!(tag instanceof String && TextUtils.equals(TAG_PADDING_ADDED, (CharSequence) tag))) {
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + StatusBarColorUtils.getStatusBarHeight(view.getContext())
+                    , view.getPaddingRight(), view.getPaddingBottom());
             view.setTag(TAG_PADDING_ADDED);
         }
     }
+
     /**
      * 状态栏沉浸模式下
      * 设置状态栏文字深颜色
@@ -85,19 +88,18 @@ public class StatusBarImmersiveUtils {
      * @param defaultDarkIconColor 如果状态栏图标无法设置为深色图标 设置默认的状态栏颜色
      */
     public static void setDarkIconStatusBarColor(Activity activity, int colorStatusbar, int defaultDarkIconColor) {
-        ViewGroup contentView = activity.findViewById(Window.ID_ANDROID_CONTENT);
+        ViewGroup contentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
         View mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
         if (mStatusBarView == null) {
             open(activity);
         }
+        mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
         if (mStatusBarView != null) {
-            mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
-            if (mStatusBarView != null) {
-                if (!StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), true)) {
-                    mStatusBarView.setBackgroundColor(defaultDarkIconColor);
-                } else {
-                    mStatusBarView.setBackgroundColor(colorStatusbar);
-                }
+            if (!StatusBarColorUtils.setStatusBarDarkIcon(activity, true)) {
+                mStatusBarView.setBackgroundColor(defaultDarkIconColor);
+            } else {
+                mStatusBarView.setBackgroundColor(colorStatusbar);
+                StatusBarColorUtils.setStatusBarDarkIcon(activity, true);
             }
         }
     }
@@ -118,17 +120,46 @@ public class StatusBarImmersiveUtils {
      * @param colorStatusbar 状态栏颜色
      */
     public static void setLightIconStatusBarColor(Activity activity, int colorStatusbar) {
-        ViewGroup contentView = activity.findViewById(Window.ID_ANDROID_CONTENT);
+        ViewGroup contentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
         View mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
         if (mStatusBarView == null) {
             open(activity);
         }
+        mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
         if (mStatusBarView != null) {
-            mStatusBarView = contentView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);
-            if (mStatusBarView != null) {
-                mStatusBarView.setBackgroundColor(colorStatusbar);
-                StatusBarColorUtils.setStatusBarDarkIcon(activity.getWindow(), false);
-            }
+            mStatusBarView.setBackgroundColor(colorStatusbar);
+            StatusBarColorUtils.setStatusBarDarkIcon(activity, false);
         }
+    }
+    /**
+     * 设置全屏
+     *
+     * @param activity
+     */
+    public static void setFullScreen(Activity activity) {
+        activity.getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    /**
+     * 取消全屏
+     *
+     * @param activity
+     */
+    public static void cancelFullScreen(Activity activity) {
+        activity.getWindow().clearFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+    /**
+     * 是否开启了沉浸式
+     * @return
+     */
+    public static boolean isOpenImmers(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            View contentView = activity.findViewById(Window.ID_ANDROID_CONTENT);
+            return contentView.findViewWithTag(StatusBarImmersiveUtils.TAG_FAKE_STATUS_BAR_VIEW) != null;
+        }
+        return false;
     }
 }
