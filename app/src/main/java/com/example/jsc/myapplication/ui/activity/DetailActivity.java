@@ -10,11 +10,12 @@ import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 
 import java.util.ArrayList;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends BaseActivity {
 
     private View head;
     private TextView name;

@@ -1,4 +1,6 @@
-package com.example.jsc.myapplication.view;
+package com.example.jsc.myapplication.mvp;
+
+import android.content.Context;
 
 /**
  * Created by jsc on 2017/11/27.
@@ -6,4 +8,5 @@ package com.example.jsc.myapplication.view;
 
 public interface BaseView {
     void onError(Class clazz, int errorCode, String errorMsg);
+    Context getContext() ;
 }

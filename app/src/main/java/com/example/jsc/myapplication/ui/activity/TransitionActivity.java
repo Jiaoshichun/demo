@@ -11,12 +11,13 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.ui.adapter.TransitionAdapter;
 
 import java.util.ArrayList;
 
-public class TransitionActivity extends AppCompatActivity implements View.OnClickListener {
+public class TransitionActivity extends BaseActivity implements View.OnClickListener {
 
     private ListView list;
     private TransitionAdapter adapter;

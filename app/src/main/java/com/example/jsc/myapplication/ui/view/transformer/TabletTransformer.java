@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.jsc.myapplication.view.transformer;
+package com.example.jsc.myapplication.ui.view.transformer;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;

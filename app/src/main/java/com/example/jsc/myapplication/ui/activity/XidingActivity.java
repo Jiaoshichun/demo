@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.common.UIUtils;
 import com.example.jsc.myapplication.ui.adapter.XidingAdapter;
 import com.example.jsc.myapplication.utils.XidingUtils;
 
-public class XidingActivity extends AppCompatActivity {
+public class XidingActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private XidingAdapter adapter;

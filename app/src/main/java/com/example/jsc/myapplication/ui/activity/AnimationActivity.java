@@ -7,13 +7,14 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AnimationActivity extends AppCompatActivity {
+public class AnimationActivity extends BaseActivity {
 
 
     @BindView(R.id.translationX)

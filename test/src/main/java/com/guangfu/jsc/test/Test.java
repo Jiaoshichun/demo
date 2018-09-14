@@ -1,4 +1,4 @@
-package com.example.jsc.myapplication;
+package com.guangfu.jsc.test;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,8 +1,6 @@
-package com.example.kayo.myapplication;
+package com.guangfu.jsc.test;
 
-import com.example.lib.MySizeOf;
-
-public class Test {
+public class FastSort {
 
     public static void main(String[] args) {
 //        int[] attr = new int[]{12, 2, 55, 11, 3, 10, 65, 79, 6};
@@ -16,7 +14,7 @@ public class Test {
         int b=-3;
         System.out.print(-6>>>2);
     }
-
+abstract
     private static void fastSort(int[] attr) {
         if (attr == null || attr.length < 2) return;
         fast(attr, 0, attr.length - 1);
@@ -46,4 +44,5 @@ public class Test {
         fast(attr, start, left - 1);
         fast(attr, left + 1, end);
     }
+
 }

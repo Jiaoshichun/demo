@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.ui.adapter.HeBingAdapter;
 import com.example.jsc.myapplication.utils.CaoZuoMp3Utils;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class HeBingActivity extends AppCompatActivity implements View.OnClickListener {
+public class HeBingActivity extends BaseActivity implements View.OnClickListener {
 
     private ListView listView;
     private HeBingAdapter heBingAdapter;

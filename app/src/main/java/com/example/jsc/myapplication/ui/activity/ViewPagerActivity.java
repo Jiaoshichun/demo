@@ -5,18 +5,15 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ImageView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
-import com.example.jsc.myapplication.view.transformer.AlphaAndScalePageTransformer;
-import com.example.jsc.myapplication.view.transformer.RotateDownTransformer;
-import com.example.jsc.myapplication.view.transformer.TabletTransformer;
+import com.example.jsc.myapplication.ui.view.transformer.TabletTransformer;
 
-public class ViewPagerActivity extends AppCompatActivity {
+public class ViewPagerActivity extends BaseActivity {
     private final String TAG = "ViewPagerActivity";
     private ViewPager vp;
     private MyAdapter myAdapter;

@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.VoteActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <com.example.jsc.myapplication.ui.view.RedPacketAnimView
+        android:id="@+id/img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="20dp"
+        android:src="@mipmap/icon_tab" />
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="120dp"
+        android:layout_marginRight="20dp"
+        android:text="终点" />
+    <com.example.jsc.myapplication.ui.view.VoteView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/voteView"/>
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_gravity="right"
+        android:text="切换数字"
+        android:id="@+id/btn_num"
+        />
+
+</FrameLayout>

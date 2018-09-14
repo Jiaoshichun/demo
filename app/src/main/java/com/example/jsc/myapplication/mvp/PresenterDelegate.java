@@ -1,4 +1,4 @@
-package com.example.kayo.myapplication.mvp;
+package com.example.jsc.myapplication.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 public interface PresenterDelegate {
     void onNewIntent(Intent mIntent);
 
-    void onCreate(Bundle bundle,Intent mIntent);
+    void onCreate(Bundle bundle, Intent mIntent);
 
     void onStart();
 

@@ -9,9 +9,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 
-public class EditTextActivity extends AppCompatActivity {
+public class EditTextActivity extends BaseActivity {
 
     private EditText edt;
     private EditText edt2;

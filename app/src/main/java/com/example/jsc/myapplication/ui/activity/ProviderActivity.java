@@ -17,11 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 
 import java.util.List;
 
-public class ProviderActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProviderActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView txtShow;
     private ContentResolver contentResolver;

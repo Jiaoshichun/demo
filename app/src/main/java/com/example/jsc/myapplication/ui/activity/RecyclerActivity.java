@@ -18,12 +18,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerActivity extends AppCompatActivity implements View.OnClickListener {
+public class RecyclerActivity extends BaseActivity implements View.OnClickListener {
 
     private RecyclerView recycler;
     private MyAdapter adapter;

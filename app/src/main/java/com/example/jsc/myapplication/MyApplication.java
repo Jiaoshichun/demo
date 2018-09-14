@@ -16,6 +16,7 @@ import android.util.Log;
 
 import com.example.jsc.myapplication.ui.activity.MessengerActivity;
 import com.example.jsc.myapplication.ui.activity.ViewPagerActivity;
+import com.example.jsc.myapplication.utils.ActivityLifecycleManager;
 import com.facebook.stetho.Stetho;
 import com.tencent.mta.track.StatisticsDataAPI;
 
@@ -47,6 +48,7 @@ public class MyApplication extends Application {
         mTid = Process.myTid();
         context = getApplicationContext();
         StatisticsDataAPI.instance(this);
+        registerActivityLifecycleCallbacks(new ActivityLifecycleManager());
 
     }
 

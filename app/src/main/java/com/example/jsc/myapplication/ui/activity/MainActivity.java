@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.common.TrackEventUtils;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn13).setOnClickListener(this);
         findViewById(R.id.btn14).setOnClickListener(this);
         findViewById(R.id.btn15).setOnClickListener(this);
+        findViewById(R.id.btn16).setOnClickListener(this);
         ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
 
     }
@@ -43,9 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn2:
                 startActivity(new Intent(this, AnimationActivity.class));
-                break;
-            case R.id.btn4:
-                startActivity(new Intent(this, StatusBarDarkActivity.class));
                 break;
             case R.id.btn5:
                 startActivity(new Intent(this, ImageScaleActivity.class));
@@ -81,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn15:
                 startActivity(new Intent(this, WebServerActivity.class));
+                break;
+            case R.id.btn16:
+                startActivity(new Intent(this, VoteActivity.class));
                 break;
         }
     }

@@ -8,10 +8,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.ui.fragment.CustomCoordinatorFragment;
 
-public class CoordinatorActivity extends AppCompatActivity implements View.OnClickListener {
+public class CoordinatorActivity extends BaseActivity implements View.OnClickListener {
 
     private View fLayout;
     private CustomCoordinatorFragment customCoordinatorFragment;

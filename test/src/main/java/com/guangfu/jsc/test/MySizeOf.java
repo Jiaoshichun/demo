@@ -1,4 +1,4 @@
-package com.example.lib;
+package com.guangfu.jsc.test;
 
 import java.lang.instrument.Instrumentation;
 

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
@@ -40,7 +41,7 @@ import java.util.Arrays;
  * 2.电脑通过浏览器 输入手机ip:3213 可访问手机内的视频文件
  * 3.浏览器点击视频可以进行播放
  */
-public class WebServerActivity extends AppCompatActivity {
+public class WebServerActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

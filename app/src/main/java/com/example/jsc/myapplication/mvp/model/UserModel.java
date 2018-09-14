@@ -1,6 +1,6 @@
-package com.example.jsc.myapplication.model;
+package com.example.jsc.myapplication.mvp.model;
 
-import com.example.jsc.myapplication.api.UserServiceApi;
+import com.example.jsc.myapplication.net.api.UserServiceApi;
 import com.example.jsc.myapplication.bean.UserDetailBean;
 import com.example.jsc.myapplication.net.RetrofitServiceManager;
 

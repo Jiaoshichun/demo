@@ -49,9 +49,6 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.activity.CircleViewActivity" />
         <activity android:name=".ui.activity.HeBingActivity" />
-        <activity
-            android:name=".ui.activity.LoginActivity"
-            android:label="@string/title_activity_login" />
 
         <provider
             android:name=".provider.MyProvider"
@@ -96,7 +93,10 @@
         </service>
 
         <activity android:name=".ui.activity.WebServerActivity" />
-        <activity android:name=".ui.activity.StatusBarDarkActivity"></activity>
+        <activity android:name=".ui.activity.VoteActivity" />
+        <activity android:name=".ui.activity.test.OneActivity"></activity>
+        <activity android:name=".ui.activity.test.TwoActivity"></activity>
+        <activity android:name=".ui.activity.test.ThreeActivity"></activity>
     </application>
 
 </manifest>

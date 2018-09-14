@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.aidl.Book;
 import com.example.jsc.myapplication.aidl.IMyAidlInterface;
@@ -23,7 +24,7 @@ import com.example.jsc.myapplication.common.ToastUtils;
 import com.example.jsc.myapplication.server.MessengerService;
 
 
-public class MessengerActivity extends AppCompatActivity implements View.OnClickListener {
+public class MessengerActivity extends BaseActivity implements View.OnClickListener {
     public final static int WHAT_CLIENT = 10;
     Button btnStartServer;
     Button btnSend;

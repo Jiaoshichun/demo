@@ -1,4 +1,4 @@
-package com.example.jsc.myapplication.model;
+package com.example.jsc.myapplication.mvp.model;
 
 
 

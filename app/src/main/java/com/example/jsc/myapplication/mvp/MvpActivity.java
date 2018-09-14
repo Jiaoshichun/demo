@@ -1,14 +1,15 @@
-package com.example.kayo.myapplication.mvp;
+package com.example.jsc.myapplication.mvp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.jsc.myapplication.BaseActivity;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class BaseActivity<T extends BasePresenter<V>, V extends BaseView> extends Activity implements BaseView {
+public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView> extends BaseActivity implements BaseView {
     private T mPresenter;
 
     @Override

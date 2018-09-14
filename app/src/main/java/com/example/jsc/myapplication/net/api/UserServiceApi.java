@@ -1,4 +1,4 @@
-package com.example.jsc.myapplication.api;
+package com.example.jsc.myapplication.net.api;
 
 import com.example.jsc.myapplication.bean.UserDetailBean;
 import com.example.jsc.myapplication.net.BaseResponse;

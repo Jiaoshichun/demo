@@ -1,7 +1,6 @@
-package com.example.jsc.myapplication.view.transformer;
+package com.example.jsc.myapplication.ui.view.transformer;
 
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 /**

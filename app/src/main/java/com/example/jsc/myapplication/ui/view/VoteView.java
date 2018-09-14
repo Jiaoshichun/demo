@@ -1,4 +1,4 @@
-package com.example.kayo.myapplication.view;
+package com.example.jsc.myapplication.ui.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,8 +18,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.kayo.myapplication.R;
-import com.example.kayo.myapplication.utils.UIUtils;
+
+import com.example.jsc.myapplication.R;
+import com.example.jsc.myapplication.common.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;

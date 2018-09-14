@@ -4,10 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.ui.view.CircleView;
 
-public class CircleViewActivity extends AppCompatActivity implements View.OnClickListener {
+public class CircleViewActivity extends BaseActivity implements View.OnClickListener {
 //
 //    private CircleView circleView;
 //    private int mProgress = 0;

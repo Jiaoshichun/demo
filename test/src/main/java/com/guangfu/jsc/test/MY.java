@@ -1,15 +1,13 @@
-package com.example.jsc.myapplication;
+package com.guangfu.jsc.test;
 
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,13 +16,13 @@ import java.util.stream.Stream;
  */
 
 public class MY {
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     public static void main(String[] args) {
         test2();
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     public static void test1() {
         List<String> strings = Arrays.asList("11", "22", "33", "44");
         strings.stream().map((s) -> Integer.valueOf(s) + 11).filter((s) -> s != 33).
@@ -34,7 +32,7 @@ public class MY {
         System.out.print(o.orElseGet(() -> 1));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     public static void test2() {
         ArrayList<Integer> integers = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
