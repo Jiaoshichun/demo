@@ -2,6 +2,7 @@ package com.example.jsc.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Instrumentation;
 import android.content.Context;
@@ -27,6 +28,8 @@ import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by jsc on 2017/6/14.
@@ -40,7 +43,9 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+//        FreelineCore.init(this);
         super.onCreate();
+        Log.e(TAG, "onCreate 当前进程:" + getProcessName());
         Thread.setDefaultUncaughtExceptionHandler(new UEHandler(this));
         //开启SteTho调试  可以通过谷歌浏览器输入 chrome://inspect   进行调试
         Stetho.initializeWithDefaults(this);
@@ -50,6 +55,21 @@ public class MyApplication extends Application {
         StatisticsDataAPI.instance(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleManager());
 
+    }
+
+    private String getProcessName() {
+        int pid = Process.myPid();
+        ActivityManager am = (ActivityManager) getSystemService(Context
+                .ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
+        Iterator<ActivityManager.RunningAppProcessInfo> iterator = runningAppProcesses.iterator();
+        while (iterator.hasNext()) {
+            ActivityManager.RunningAppProcessInfo next = iterator.next();
+            if (pid == next.pid) {
+                return next.processName;
+            }
+        }
+        return null;
     }
 
     public static Context getContext() {

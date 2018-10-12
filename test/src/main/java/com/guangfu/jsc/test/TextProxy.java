@@ -9,7 +9,7 @@ public class TextProxy {
         //1. 创建目标对象
         RealSubject realSubject = new RealSubject();
         //2.创建代理对象  第一个参数，必须是目标对象的classloader 第二个参数 必须是目标对象的接口  第三个参数 动态代理处理逻辑  返回值 必须是主题接口。
-        Subject subject = (Subject) Proxy.newProxyInstance(RealSubject.class.getClassLoader(), RealSubject.class.getInterfaces(), new CustomHandler(realSubject));
+        Subject subject = (Subject) Proxy.newProxyInstance(Subject.class.getClassLoader(), new Class[]{Subject.class}, new CustomHandler(realSubject));
         //获取代理对象第二种方式
 //        Class<?> proxyClass = Proxy.getProxyClass(RealSubject.class.getClassLoader(), RealSubject.class.getInterfaces());
 //        try {
@@ -59,19 +59,19 @@ public class TextProxy {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            Object invoke = null;
+//            Object invoke = null;
             switch (method.getName()) {
                 case "wan":
                     System.out.println("玩前");
-                    invoke = method.invoke(subject, args);
+//                    invoke = method.invoke(subject, args);
                     break;
                 case "say":
                     System.out.println("say前");
-                    invoke = method.invoke(subject, args);
+//                    invoke = method.invoke(subject, args);
                     break;
             }
             System.out.println("结束");
-            return invoke;
+            return null;
         }
     }
 }

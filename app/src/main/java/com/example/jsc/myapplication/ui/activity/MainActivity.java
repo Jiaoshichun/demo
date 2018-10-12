@@ -1,7 +1,6 @@
 package com.example.jsc.myapplication.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
@@ -9,8 +8,9 @@ import android.widget.ScrollView;
 import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.common.TrackEventUtils;
+import com.example.jsc.myapplication.mvp.MvpActivity;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends MvpActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn14).setOnClickListener(this);
         findViewById(R.id.btn15).setOnClickListener(this);
         findViewById(R.id.btn16).setOnClickListener(this);
+        findViewById(R.id.btn17).setOnClickListener(this);
         ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
 
     }
@@ -83,6 +84,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn16:
                 startActivity(new Intent(this, VoteActivity.class));
+                break;
+            case R.id.btn17:
+                startActivity(new Intent(this, InflaterFactoryActivity.class));
                 break;
         }
     }

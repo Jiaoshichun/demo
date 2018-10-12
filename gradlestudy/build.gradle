@@ -1,1 +1,25 @@
-println("hello world")
+//使用gradle wrapper 生成wrapper文件
+//wrapper文件是让项目在没有安装gradle的情况下能够使用gradle
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '4.6'
+//}
+def no = {
+    println('无参数')
+}
+def useit = {
+    //每个闭包中有默认参数it
+    println(it)
+}
+//带有参数的闭包
+def two = { a, b ->
+    println(a + b)
+}
+//闭包的使用 直接调用call指令
+no.call()
+useit.call('默认参数')
+two.call(1, 2)
+
+def useClosure(closure) {
+    closure.call()
+}
+useClosure(no)

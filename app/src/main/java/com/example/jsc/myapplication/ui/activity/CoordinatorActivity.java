@@ -7,10 +7,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.jsc.myapplication.BaseActivity;
 import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.ui.fragment.CustomCoordinatorFragment;
+import com.facebook.stetho.common.LogUtil;
 
 public class CoordinatorActivity extends BaseActivity implements View.OnClickListener {
 
@@ -44,9 +46,24 @@ public class CoordinatorActivity extends BaseActivity implements View.OnClickLis
             }
         };
         drawerLayout.setDrawerListener(mDrawerToggle);
-
+        ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
+        StringBuffer stringBuffer = new StringBuffer();
+        getAllView(decorView,stringBuffer);
+        LogUtil.e("------=========",stringBuffer);
     }
-
+    public void getAllView(ViewGroup viewGroup,StringBuffer stringBuffer){
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            View at = viewGroup.getChildAt(i);
+            stringBuffer.append("parent:").append(viewGroup)
+                    .append(at.getClass().getSimpleName())
+                    .append("->")
+                    .append(at.getClass().getSimpleName())
+                    .append("\r\n");
+            if(at instanceof  ViewGroup){
+                getAllView((ViewGroup) at,stringBuffer);
+            }
+        }
+    }
 //    @Override
 //    protected void onPostCreate(Bundle savedInstanceState) {
 //        super.onPostCreate(savedInstanceState);

@@ -15,23 +15,16 @@ public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isNeedPresenter())
-            createPresenter(savedInstanceState);
+        createPresenter(savedInstanceState);
 
     }
 
-    /**
-     * @return 不需要Presenter 时重新该方法返回false
-     */
-    protected boolean isNeedPresenter() {
-        return true;
-    }
 
     private void createPresenter(Bundle savedInstanceState) {
         try {
             Type genericSuperclass = getClass().getGenericSuperclass();
-            if (!(genericSuperclass instanceof ParameterizedType))
-                throw new RuntimeException(getClass().getSimpleName() + "：Generics not declared ,method(isNeedPresenter) must return false");
+            if (!(genericSuperclass instanceof ParameterizedType))//如果没有声明泛型 则返回不进行Presenter初始化
+                return;
             Type[] types = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
             if (types == null || types.length != 2) {
                 throw new RuntimeException(getClass().getSimpleName() + "： Generics must be declared ");
@@ -56,13 +49,13 @@ public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (isNeedPresenter())
+        if (mPresenter != null)
             mPresenter.onNewIntent(intent);
     }
 
     protected T getPresenter() {
-        if (!isNeedPresenter())
-            throw new RuntimeException(getClass().getSimpleName() + "：if need Presenter method(isNeedPresenter) must return true");
+        if (mPresenter == null)
+            throw new RuntimeException(getClass().getSimpleName() + "：No declare generics presenter");
         return mPresenter;
     }
 
@@ -75,35 +68,35 @@ public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView
     @Override
     protected void onStart() {
         super.onStart();
-        if (isNeedPresenter())
+        if (mPresenter != null)
             mPresenter.onStart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (isNeedPresenter())
+        if (mPresenter != null)
             mPresenter.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (isNeedPresenter())
+        if (mPresenter != null)
             mPresenter.onPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (isNeedPresenter())
+        if (mPresenter != null)
             mPresenter.onStop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (isNeedPresenter()) {
+        if (mPresenter != null) {
             mPresenter.onDestroy();
             mPresenter.detachView();
         }
@@ -112,7 +105,7 @@ public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (isNeedPresenter())
+        if (mPresenter != null)
             mPresenter.onActivityResult(requestCode, resultCode, data);
     }
 }

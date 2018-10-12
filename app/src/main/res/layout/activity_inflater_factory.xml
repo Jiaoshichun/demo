@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.InflaterFactoryActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="背景变红" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_tab" />
+
+        <Button
+            android:id="@+id/btn_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="背景变蓝" />
+
+        <com.example.jsc.myapplication.ui.view.RedPacketAnimView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/icon_tab" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#000000" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -119,6 +119,12 @@
                 android:layout_height="wrap_content"
                 android:text="扇形菜单"
                 android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LayoutInflaterFatory使用"
+                android:textAllCaps="false" />
 
         </LinearLayout>
     </ScrollView>

@@ -7,6 +7,5 @@ import android.content.Context;
  */
 
 public interface BaseView {
-    void onError(Class clazz, int errorCode, String errorMsg);
     Context getContext() ;
 }

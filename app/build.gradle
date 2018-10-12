@@ -1,4 +1,5 @@
 buildscript {
+
     repositories {
         jcenter()
     }
@@ -6,13 +7,21 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-
+apply from: '../gradle_components/ext.gradle'
 apply plugin: 'com.android.application'
+//apply plugin: 'com.antfortune.freeline'
 //apply plugin: 'kotlin-android'
 //apply plugin: 'kotlin-android-extensions'
 //添加插件
 //apply plugin: 'me.tatarka.retrolambda'
 android {
+
+//    freeline {
+//        hack true
+//        autoDependency false
+//        //productFlavor "normal"
+//    }
+
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
@@ -32,7 +41,7 @@ android {
                 MTA_APPKEY : "A5DEPTB5T82Y",
                 MTA_CHANNEL: "渠道名称"
         ]
-
+        flavorDimensions "applicationId"
     }
     buildTypes {
         release {
@@ -49,14 +58,46 @@ android {
             signingConfig signingConfigs.debug
             buildConfigField 'boolean', 'ISDEBUG', 'true'
         }
+
     }
     compileOptions {
 
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-}
+    productFlavors {
+        demo {
 
+        }
+        full {
+
+        }
+    }
+}
+//task A{
+//    println("任务A")
+//}
+//println(ext_can_get)
+//task B{
+//    println("任务B")
+//}
+//task C{
+//    doFirst{
+//        println("任务C First")
+//    }
+//    println("任务C")
+//    doLast{
+//        println("任务C last")
+//    }
+//
+//}
+//gradle.afterProject {
+//    println('gradle.afterProject'+it.name)
+//}
+//
+//afterEvaluate {
+//    println('afterEvaluate被调用啦'+it.name)
+//}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -112,4 +153,5 @@ dependencies {
     compile 'com.qq.visual:visual:3.3.1-release'
     compile 'com.koushikdutta.async:androidasync:2.1.7'
     compile 'com.yanzhenjie:permission:2.0.0-rc12'
+    implementation 'com.blankj:utilcode:1.20.3'
 }

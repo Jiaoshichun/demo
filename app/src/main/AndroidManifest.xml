@@ -22,7 +22,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:process=":main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -94,9 +96,10 @@
 
         <activity android:name=".ui.activity.WebServerActivity" />
         <activity android:name=".ui.activity.VoteActivity" />
-        <activity android:name=".ui.activity.test.OneActivity"></activity>
-        <activity android:name=".ui.activity.test.TwoActivity"></activity>
-        <activity android:name=".ui.activity.test.ThreeActivity"></activity>
+        <activity android:name=".ui.activity.test.OneActivity" />
+        <activity android:name=".ui.activity.test.TwoActivity" />
+        <activity android:name=".ui.activity.test.ThreeActivity" />
+        <activity android:name=".ui.activity.InflaterFactoryActivity" />
     </application>
 
 </manifest>

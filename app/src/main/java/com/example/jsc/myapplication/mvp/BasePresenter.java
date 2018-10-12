@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.jsc.myapplication.net.Fault;
-
-import rx.functions.Action1;
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -16,32 +14,14 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public class BasePresenter<T extends BaseView> implements Presenter<T>,PresenterDelegate {
-    protected CompositeSubscription subscription;
+    private CompositeSubscription subscription = new CompositeSubscription();
     protected String TAG = getClass().getSimpleName();
     private T mView;
     public BasePresenter() {
-        subscription = new CompositeSubscription();
+
     }
 
-    /**
-     * 网络请求错误处理方法
-     *
-     * @param view
-     * @param clazz
-     * @return
-     */
-    public Action1<Throwable> getErrorAction(final BaseView view, final Class clazz) {
-        return (throwable) -> {
-            if (throwable instanceof Fault) {
-                Fault fault = (Fault) throwable;
-                view.onError(clazz, fault.errorCode, fault.errorMsg);
-            } else {
-                view.onError(clazz, -1, throwable.getMessage());
 
-            }
-            throwable.printStackTrace();
-        };
-    }
 
     @Override
     public void onNewIntent(Intent mIntent) {
@@ -67,7 +47,9 @@ public class BasePresenter<T extends BaseView> implements Presenter<T>,Presenter
     public void onPause() {
 
     }
-
+    protected void managerSubscription(Subscription s){
+        subscription.add(s);
+    }
     @Override
     public void onStop() {
 

@@ -3,18 +3,13 @@ package com.guangfu.jsc.test;
 public class FastSort {
 
     public static void main(String[] args) {
-//        int[] attr = new int[]{12, 2, 55, 11, 3, 10, 65, 79, 6};
-//        fastSort(attr);
-//        for (int i : attr) {
-//            System.out.print(i+"--");
-//        }
-//        int a=1;
-//        System.out.println(MySizeOf.sizeOf(a));
-        int a=13;
-        int b=-3;
-        System.out.print(-6>>>2);
+        int[] attr = new int[]{12, 2, 55, 11, 3, 10, 65, 79, 6};
+        fastSort(attr);
+        for (int i : attr) {
+            System.out.print(i+"--");
+        }
+
     }
-abstract
     private static void fastSort(int[] attr) {
         if (attr == null || attr.length < 2) return;
         fast(attr, 0, attr.length - 1);
