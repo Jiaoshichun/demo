@@ -345,9 +345,11 @@ public class FileUtil {
         else return FileUtil.getCacheFilePath(fileName);
 
     }
-    public static String getMiliaoPath(){
+
+    public static String getMiliaoPath() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "miliaos";
     }
+
     public static File getMiliaoFile(String fileName) {
         return new File(getMiliaoPath(fileName));
 
@@ -402,6 +404,28 @@ public class FileUtil {
                     fo.close();
                 if (out != null)
                     out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void copyFile(InputStream inputStream, OutputStream outputStream) {
+        if (inputStream == null || outputStream == null) return;
+        try {
+            byte[] bytes = new byte[1024];
+            int len;
+            while ((len = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (inputStream != null)
+                    inputStream.close();
+                if (outputStream != null)
+                    outputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

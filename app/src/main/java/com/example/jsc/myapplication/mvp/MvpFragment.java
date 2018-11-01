@@ -1,20 +1,19 @@
 package com.example.jsc.myapplication.mvp;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.jsc.myapplication.BaseActivity;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView> extends BaseActivity implements BaseView {
+public class MvpFragment<T extends BasePresenter<V>, V extends BaseView> extends Fragment implements BaseView {
     private T mPresenter;
     public final String TAG = getClass().getSimpleName();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createPresenter(savedInstanceState);
 
@@ -38,18 +37,16 @@ public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView
             } catch (ClassCastException e) {
                 throw new RuntimeException(TAG + " must implements " + types[1]);
             }
-        } catch (InstantiationException e) {
+        } catch (java.lang.InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
 
-        mPresenter.onCreate(savedInstanceState, getIntent());
+        mPresenter.onCreate(savedInstanceState, getActivity().getIntent());
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+    public void onNewIntent(Intent intent) {
         if (mPresenter != null)
             mPresenter.onNewIntent(intent);
     }
@@ -62,40 +59,40 @@ public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView
 
     @Override
     public Context getContext() {
-        return this;
+        return getActivity();
     }
 
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         if (mPresenter != null)
             mPresenter.onStart();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if (mPresenter != null)
             mPresenter.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         if (mPresenter != null)
             mPresenter.onPause();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         if (mPresenter != null)
             mPresenter.onStop();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
             mPresenter.onDestroy();
@@ -104,7 +101,7 @@ public abstract class MvpActivity<T extends BasePresenter<V>, V extends BaseView
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (mPresenter != null)
             mPresenter.onActivityResult(requestCode, resultCode, data);

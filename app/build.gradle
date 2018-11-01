@@ -100,19 +100,12 @@ android {
 //}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     //retrofit
     //Gson converter
     //RxJava2 Adapter
     //okhttp
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //noinspection GradleCompatible,GradleCompatible
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     //noinspection GradleCompatible
     compile 'com.android.support:appcompat-v7:27.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.1.3'

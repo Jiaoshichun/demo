@@ -5,7 +5,7 @@ import com.example.jsc.myapplication.net.api.UserServiceApi;
 import com.example.jsc.myapplication.bean.UserDetailBean;
 import com.example.jsc.myapplication.net.RetrofitServiceManager;
 
-import rx.Observable;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -21,11 +21,12 @@ public class UserModel extends BaseModel {
         userServiceApi = RetrofitServiceManager.getInstance().create(UserServiceApi.class);
     }
 
-    public Observable<UserDetailBean> getUserDetail() {
+    public Subscription getUserDetail(NetListener<UserDetailBean> listener) {
         return userServiceApi.getUserData()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(getData());
+                .map(getData())
+                .subscribe(listener);
     }
 }

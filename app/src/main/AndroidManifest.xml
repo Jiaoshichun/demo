@@ -23,8 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:process=":main">
+            android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,7 +78,9 @@
             android:exported="true"
             android:process=":messenger" />
 
-        <activity android:name=".ui.activity.ViewPagerActivity" />
+        <activity
+            android:name=".ui.activity.ViewPagerActivity"
+            android:theme="@style/AppTheme.GoldEggTranslucent" />
         <activity android:name=".ui.activity.AnimationActivity" />
 
         <service
@@ -96,10 +97,8 @@
 
         <activity android:name=".ui.activity.WebServerActivity" />
         <activity android:name=".ui.activity.VoteActivity" />
-        <activity android:name=".ui.activity.test.OneActivity" />
-        <activity android:name=".ui.activity.test.TwoActivity" />
-        <activity android:name=".ui.activity.test.ThreeActivity" />
         <activity android:name=".ui.activity.InflaterFactoryActivity" />
+        <activity android:name=".ui.activity.OkHttpActivity"></activity>
     </application>
 
 </manifest>

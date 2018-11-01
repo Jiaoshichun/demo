@@ -19,10 +19,21 @@ public class MY {
 
     public static void main(String[] args) {
         test2();
-
+        log("main");
     }
 
+    private static void log(String tag) {
 
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        for (StackTraceElement element : stackTrace) {
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append(tag).append("---方法调用栈").append("className:").append(element.getClassName()).append("--")
+                    .append("getFileName：").append(element.getFileName()).append("---")
+                    .append("getMethodName：").append(element.getMethodName()).append("---")
+                    .append("getLineNumber：").append(element.getLineNumber());
+           System.out.println(stringBuffer);
+        }
+    }
     public static void test1() {
         List<String> strings = Arrays.asList("11", "22", "33", "44");
         strings.stream().map((s) -> Integer.valueOf(s) + 11).filter((s) -> s != 33).

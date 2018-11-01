@@ -23,6 +23,7 @@ public class ViewPagerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
+        overridePendingTransition(-1,-1);
         vp = findViewById(R.id.vp);
         myAdapter = new MyAdapter(this);
         vp.setAdapter(myAdapter);
@@ -65,5 +66,11 @@ public class ViewPagerActivity extends BaseActivity {
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(-1,-1);
     }
 }
