@@ -9,7 +9,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.jsc.myapplication.R;
+import com.example.jsc.myapplication.common.UIUtils;
 import com.example.jsc.myapplication.ui.activity.XidingActivity;
+import com.example.jsc.myapplication.utils.imageloader.JImageLoader;
 
 public class XidingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int[] ids = {R.mipmap.one, R.mipmap.two, R.mipmap.three};
@@ -64,7 +66,9 @@ public class XidingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
 
         public void onBindData(int ids) {
-            Glide.with(itemView).load(ids).into(iv);
+            JImageLoader.getInstance()
+                    .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541159508824&di=e8ee61cfb1d514ed112554b039011ae6&imgtype=0&src=http%3A%2F%2Fs1.sinaimg.cn%2Fmw690%2F0062ywFUgy6Y2pCcTde70%26690")
+                    .centerCrop().angle(UIUtils.dip2px(20)).into(iv);
         }
     }
 }

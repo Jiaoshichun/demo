@@ -33,6 +33,7 @@ public class MY {
                     .append("getLineNumber：").append(element.getLineNumber());
            System.out.println(stringBuffer);
         }
+        String a="1";
     }
     public static void test1() {
         List<String> strings = Arrays.asList("11", "22", "33", "44");

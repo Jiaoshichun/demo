@@ -1,32 +1,29 @@
 package com.guangfu.jsc.test;
 
-import java.lang.reflect.Field;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class Demo {
 
-    public Demo(int a) {
-
-    }
-
     public static void main(String[] args) {
-
-        try {
-            Field field = Demo.class.getField("");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+        String[] names = {"a", "b", "c"};
+        ArrayList<Runnable> runnables = new ArrayList<>();
+        for (int i = 0; i < names.length; i++) {
+            String n = names[i];
+            runnables.add(() -> System.out.println(n));
         }
-
-
+        runnables.forEach(runnable -> new Thread(runnable).start());
     }
 
-    public <S> S test(S t) {
-        return t;
-    }
-
-
-    public int test2(@Deprecated int a, int b) {
-
-        return 1;
+    interface Collection2<T> extends Collection<T> {
+        default void forEachIf(Consumer<T> action, Predicate<T> filter) {
+            forEach(t -> {
+                if (filter.test(t)) action.accept(t);
+            });
+        }
     }
 
 }

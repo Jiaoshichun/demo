@@ -15,9 +15,12 @@ import android.os.Process;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.bumptech.glide.Glide;
 import com.example.jsc.myapplication.ui.activity.MessengerActivity;
 import com.example.jsc.myapplication.ui.activity.ViewPagerActivity;
 import com.example.jsc.myapplication.utils.ActivityLifecycleManager;
+import com.example.jsc.myapplication.utils.imageloader.GlideStrategy;
+import com.example.jsc.myapplication.utils.imageloader.JImageLoader;
 import com.facebook.stetho.Stetho;
 import com.tencent.mta.track.StatisticsDataAPI;
 
@@ -54,6 +57,7 @@ public class MyApplication extends Application {
         context = getApplicationContext();
         StatisticsDataAPI.instance(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleManager());
+        JImageLoader.getInstance().setLoaderStrategy(new GlideStrategy(getApplicationContext()));
 
     }
 

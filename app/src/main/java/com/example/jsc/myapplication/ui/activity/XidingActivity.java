@@ -14,6 +14,7 @@ import com.example.jsc.myapplication.R;
 import com.example.jsc.myapplication.common.UIUtils;
 import com.example.jsc.myapplication.ui.adapter.XidingAdapter;
 import com.example.jsc.myapplication.utils.XidingUtils;
+import com.example.jsc.myapplication.utils.imageloader.JImageLoader;
 
 public class XidingActivity extends BaseActivity {
 
@@ -40,6 +41,7 @@ public class XidingActivity extends BaseActivity {
         adapter.notifyDataSetChanged();
         View view = UIUtils.getView(R.layout.view_xiding);
         xidingUtils = new XidingUtils(recyclerView, view, UIUtils.dip2px(40));
+        JImageLoader.getInstance().clearAll();
     }
     public void onBindData(ViewGroup viewGroup,int position){
         xidingUtils.onBindXidingItemView(viewGroup,position);
